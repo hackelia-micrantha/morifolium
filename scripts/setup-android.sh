@@ -26,7 +26,7 @@ fi
 
 "$sdkmanager_bin" \
   "platform-tools" \
-  "platforms;android-37" \
+  "platforms;android-36" \
   "build-tools;36.0.0"
 
 escaped_sdk_root="${sdk_root//\\/\\\\}"
