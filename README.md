@@ -84,7 +84,7 @@ A developer can:
 
 ## Distribution and upgrades
 
-Morifolium is a **versioned source distribution**. Immutable Git tags/releases are the version authority; GitHub template mode is a bootstrap convenience rather than an upgrade mechanism.
+Morifolium is a **versioned source distribution**. Immutable Git tags/releases are the version authority. GitHub template mode is deferred while Morifolium is pre-v0.1 and may be enabled later when a release or concrete consumer demonstrates that default-branch template bootstrap is useful.
 
 Consumers retain `.morifolium-version` and apply release migrations deliberately so repository-level CI, security, tooling, and application changes remain reviewable instead of being hidden behind a framework dependency.
 
@@ -127,7 +127,7 @@ Specialized implementation concerns should remain in the projects that own them 
 - [QART 0002 — Initial reference profile](docs/qart/0002-initial-reference-profile.md)
 - [ADR 0002 — Native Android v0.1 reference profile](docs/adr/0002-native-android-v0.1-profile.md)
 - [QART 0003 — Distribution and upgrade governance](docs/qart/0003-distribution-governance.md)
-- [ADR 0003 — Versioned source distribution and template bootstrap](docs/adr/0003-versioned-source-distribution.md)
+- [ADR 0003 — Versioned source distribution and deferred template bootstrap](docs/adr/0003-versioned-source-distribution.md)
 
 ## Current priorities
 
