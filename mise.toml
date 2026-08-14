@@ -1,0 +1,26 @@
+[tools]
+java = "temurin-17"
+gradle = "9.5.0"
+
+[tasks.setup]
+description = "Validate and provision the Android SDK required by the reference profile"
+run = "./scripts/setup-android.sh"
+
+[tasks.lint]
+description = "Run Android static analysis"
+depends = ["setup"]
+run = "gradle --no-daemon :app:lintDebug"
+
+[tasks.test]
+description = "Run reference-profile unit tests"
+depends = ["setup"]
+run = "gradle --no-daemon :app:testDebugUnitTest"
+
+[tasks.build]
+description = "Build the Android debug application artifact"
+depends = ["setup"]
+run = "gradle --no-daemon :app:assembleDebug"
+
+[tasks.ci]
+description = "Run the canonical Morifolium validation gate"
+depends = ["lint", "test", "build"]

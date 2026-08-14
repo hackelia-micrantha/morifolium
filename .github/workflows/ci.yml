@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    uses: hackelia-micrantha/.github/.github/workflows/reusable-mise-ci.yml@a94071079413f7ee055b3983978da9ea00fe0526
+    with:
+      task: ci
