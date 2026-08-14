@@ -29,9 +29,9 @@ set +e
 gradle --no-daemon :app:lintDebug :app:testDebugUnitTest :app:assembleDebug
 status=$?
 set -e
-if [[ $status -ne 0 && -f app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt ]]; then
+if [ "$status" -ne 0 ] && [ -f app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt ]; then
   echo "--- Android lint report ---"
   cat app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
 fi
-exit $status
+exit "$status"
 '''
