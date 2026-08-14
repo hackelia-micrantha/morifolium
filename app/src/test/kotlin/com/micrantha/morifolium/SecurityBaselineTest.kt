@@ -2,7 +2,6 @@ package com.micrantha.morifolium
 
 import java.nio.file.Files
 import java.nio.file.Path
-import javax.xml.XMLConstants
 import javax.xml.parsers.DocumentBuilderFactory
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -112,8 +111,8 @@ class SecurityBaselineTest {
             setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
             setFeature("http://xml.org/sax/features/external-general-entities", false)
             setFeature("http://xml.org/sax/features/external-parameter-entities", false)
-            setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "")
-            setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "")
+            setAttribute("http://javax.xml.XMLConstants/property/accessExternalDTD", "")
+            setAttribute("http://javax.xml.XMLConstants/property/accessExternalSchema", "")
         }
 
         return Files.newInputStream(repoRoot.resolve(relativePath)).use { input ->
