@@ -45,10 +45,10 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ## Android SDK contract
 
-The setup task provisions the SDK packages required by this profile into the configured Android SDK installation:
+The setup task provisions the stable SDK packages required by this profile into the configured Android SDK installation:
 
 - platform tools
-- Android API 37 platform
+- Android 16 / API 36 platform
 - Android build tools 36.0.0
 
 The Android SDK installation itself remains an external workstation prerequisite in v0.1. A later distribution/governance slice can decide whether Morifolium should manage command-line tools through `mise` as well.
