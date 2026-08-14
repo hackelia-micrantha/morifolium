@@ -18,24 +18,29 @@ mise run setup
 mise run ci
 ```
 
-The CI gate composes the same repository tasks used locally:
+The CI gate composes the same checks used by the individual repository tasks:
 
 ```text
 setup
-  -> lint
-  -> unit tests
-  -> debug APK build
+  -> one coordinated Gradle build
+       -> Android lint
+       -> unit tests
+       -> debug APK assembly
 ```
 
-`lint`, `test`, and `build` share the same `setup` dependency and may execute concurrently after setup completes.
+The canonical `ci` task deliberately runs those Gradle targets in a **single Gradle invocation**. Separate Gradle processes must not execute these targets concurrently against the same build directory because Kotlin incremental caches and Android generated resources are shared build state.
 
 ## Individual tasks
+
+For focused local work, the same gates remain available independently:
 
 ```bash
 mise run lint
 mise run test
 mise run build
 ```
+
+Run independent tasks sequentially when they share the same checkout/build directory.
 
 The debug application artifact is produced at:
 
