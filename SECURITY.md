@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Morifolium is pre-v0.1. Security fixes are applied to the current `main` branch and, once releases exist, to the latest supported release when practical. Older template snapshots are not automatically updated.
+Morifolium is pre-v0.1. Security fixes are applied to the current `main` branch and, once releases exist, to the latest supported release when practical. Older source snapshots and downstream consumer copies are not automatically updated.
 
 ## Reporting a vulnerability
 
@@ -23,3 +23,8 @@ Include, when possible:
 Morifolium is a reference distribution, not a security boundary by itself. Consumers remain responsible for product-specific threat models, identities, authorization, backend controls, signing keys, store credentials, privacy obligations, and production incident response.
 
 Security-sensitive defaults in Morifolium should fail closed where practical and remain inspectable in source control.
+
+Reference-profile design and enforced defaults are documented in:
+
+- [Mobile security baseline](docs/security/baseline.md)
+- [Reference-profile threat model](docs/security/threat-model.md)
