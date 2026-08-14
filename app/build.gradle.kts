@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.Test
+
 plugins {
     id("com.android.application")
 }
@@ -25,6 +27,10 @@ android {
         warningsAsErrors = true
         checkDependencies = true
     }
+}
+
+tasks.withType<Test>().configureEach {
+    systemProperty("morifolium.repoRoot", rootProject.projectDir.absolutePath)
 }
 
 dependencies {
