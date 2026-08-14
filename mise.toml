@@ -24,4 +24,14 @@ run = "gradle --no-daemon :app:assembleDebug"
 [tasks.ci]
 description = "Run the canonical Morifolium validation gate in one coordinated Gradle build"
 depends = ["setup"]
-run = "gradle --no-daemon :app:lintDebug :app:testDebugUnitTest :app:assembleDebug"
+run = '''
+set +e
+gradle --no-daemon :app:lintDebug :app:testDebugUnitTest :app:assembleDebug
+status=$?
+set -e
+if [[ $status -ne 0 && -f app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt ]]; then
+  echo "--- Android lint report ---"
+  cat app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+fi
+exit $status
+'''
