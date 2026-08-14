@@ -59,7 +59,9 @@ Future release signing must treat keystores/private keys and store credentials a
 
 Credentials, tokens, authorization headers, signing material, private keys, user content, and regulated/sensitive product data must not be treated as generic telemetry.
 
-Issue #9 owns the first executable privacy-aware observability contract. Until then, Morifolium does not add a remote logging or crash-reporting endpoint.
+The [privacy-aware observability contract](../observability/contract.md) now enforces a narrow operational-event shape before the sink boundary. The built-in reference sink remains local/in-memory and requires no remote endpoint or credential.
+
+Remote telemetry providers remain consumer-owned and must follow the consumer's privacy, consent, retention, data-residency, and incident-access requirements.
 
 ## Specialized Micrantha integrations
 
