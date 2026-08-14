@@ -22,5 +22,6 @@ depends = ["setup"]
 run = "gradle --no-daemon :app:assembleDebug"
 
 [tasks.ci]
-description = "Run the canonical Morifolium validation gate"
-depends = ["lint", "test", "build"]
+description = "Run the canonical Morifolium validation gate in one coordinated Gradle build"
+depends = ["setup"]
+run = "gradle --no-daemon :app:lintDebug :app:testDebugUnitTest :app:assembleDebug"
