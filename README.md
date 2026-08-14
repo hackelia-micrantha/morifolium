@@ -10,7 +10,7 @@ It is not a new mobile application framework. Morifolium composes established pl
 
 **Lifecycle: incubating / pre-v0.1**
 
-Morifolium now has an initial executable **native Android/Kotlin reference profile** for proving the project-level delivery contract. Its canonical gate uses `mise` to validate the Android SDK, run Android lint and unit tests, and build a debug APK through the same task interface locally and in CI.
+Morifolium has an initial executable **native Android/Kotlin reference profile** for proving the project-level delivery contract. Its canonical gate uses `mise` to validate the Android SDK, run Android lint and unit tests, and build a debug APK through the same task interface locally and in CI.
 
 ```bash
 mise install
@@ -19,7 +19,7 @@ mise run ci
 
 See [Getting started](docs/getting-started.md) for prerequisites and artifact details.
 
-The reference profile is still pre-v0.1: security, observability, release, distribution, and downstream adoption contracts remain intentionally incomplete. Morifolium is **not yet production-grade** and should not be treated as a finished starter kit.
+Repository governance now defines licensing, version lineage, supply-chain pinning, and downstream upgrade semantics. The reference profile is still pre-v0.1: representative security/observability integrations, a release candidate, and second-consumer adoption remain intentionally incomplete. Morifolium is **not yet production-grade** and should not be treated as a finished starter kit.
 
 ## Purpose
 
@@ -82,6 +82,18 @@ A developer can:
 6. distinguish platform-owned configuration from product-owned code;
 7. reproduce the workflow from documented tooling.
 
+## Distribution and upgrades
+
+Morifolium is a **versioned source distribution**. Immutable Git tags/releases are the version authority; GitHub template mode is a bootstrap convenience rather than an upgrade mechanism.
+
+Consumers retain `.morifolium-version` and apply release migrations deliberately so repository-level CI, security, tooling, and application changes remain reviewable instead of being hidden behind a framework dependency.
+
+See:
+
+- [Repository governance](docs/governance.md)
+- [Release and upgrade policy](docs/release-policy.md)
+- [Security policy](SECURITY.md)
+
 ## Non-goals for v0.1
 
 - supporting every Android/iOS/cross-platform stack at once;
@@ -114,13 +126,19 @@ Specialized implementation concerns should remain in the projects that own them 
 - [ADR 0001 — Mobile platform golden-path boundary](docs/adr/0001-mobile-platform-golden-path.md)
 - [QART 0002 — Initial reference profile](docs/qart/0002-initial-reference-profile.md)
 - [ADR 0002 — Native Android v0.1 reference profile](docs/adr/0002-native-android-v0.1-profile.md)
+- [QART 0003 — Distribution and upgrade governance](docs/qart/0003-distribution-governance.md)
+- [ADR 0003 — Versioned source distribution and template bootstrap](docs/adr/0003-versioned-source-distribution.md)
 
 ## Current priorities
 
 1. keep the Android golden-path validation gate reproducible and green;
-2. establish repository governance, licensing, and release/template policy;
-3. add representative security and privacy-aware observability boundaries;
-4. validate adoption through a second consumer before expanding abstractions.
+2. add representative mobile security and privacy-aware observability boundaries;
+3. validate adoption through a second consumer before expanding abstractions;
+4. prepare a bounded v0.1 release candidate once those contracts are proven.
+
+## License
+
+Morifolium is licensed under the [Apache License 2.0](LICENSE).
 
 ## Project philosophy
 
