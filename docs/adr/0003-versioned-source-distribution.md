@@ -1,4 +1,4 @@
-# ADR 0003: Versioned source distribution and template bootstrap
+# ADR 0003: Versioned source distribution and deferred template bootstrap
 
 ## Status
 
@@ -8,13 +8,15 @@ Accepted.
 
 Morifolium's primary artifact is a repository-level golden path. It contains build tooling, CI composition, static-analysis policy, security defaults, reference application code, documentation, and future operational integrations. A conventional runtime package cannot carry that full contract.
 
-QART 0003 evaluated template-only distribution, package distribution, and versioned source distribution with template bootstrap.
+QART 0003 evaluated template-only distribution, package distribution, and versioned source distribution with optional template bootstrap.
 
 ## Decision
 
-Morifolium will use **immutable Git tags/releases as its version authority** and may expose the repository as a **GitHub template for bootstrap convenience**.
+Morifolium will use **immutable Git tags/releases as its version authority**.
 
-Template generation is not an upgrade mechanism and does not replace release versioning.
+GitHub template mode is an eligible future bootstrap convenience, but it will **not be enabled while Morifolium is pre-v0.1**. Enable it only after a v0.1 release exists or a concrete consumer demonstrates that default-branch template bootstrap adds useful adoption value.
+
+Template generation, if enabled later, is not an upgrade mechanism and does not replace release versioning.
 
 ### Version lineage
 
@@ -59,17 +61,17 @@ Automated upgrade tooling may be added later, but it must preserve this explicit
 - the complete project/SDLC contract remains versioned together;
 - consumers do not require package-registry credentials;
 - source provenance is inspectable through immutable tags and the lineage marker;
-- GitHub template mode remains available for low-friction experimentation;
-- future libraries can still be extracted independently when reuse is proven.
+- an unstable pre-v0.1 `main` is not advertised as a ready-to-copy template;
+- future template bootstrap or libraries can still be added when adoption evidence justifies them.
 
 ### Negative
 
 - upgrades require migration work rather than a dependency-version bump;
-- template-created repositories do not share history with Morifolium;
+- template convenience is deferred during incubation;
 - maintainers must keep release notes and migrations useful enough for downstream consumers.
 
 ## Follow-up
 
-- enable GitHub template-repository mode after this policy lands;
 - publish the first release only when the v0.1 acceptance contract is satisfied;
+- reassess GitHub template mode when a v0.1 release or concrete consumer exists;
 - add release automation/provenance only when a concrete release artifact requires it.

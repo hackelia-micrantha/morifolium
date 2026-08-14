@@ -41,32 +41,32 @@ Move reusable platform behavior into a versioned package and make consumer appli
 - introduces package publication and potentially registry credentials before the platform contract requires them;
 - risks turning Morifolium into another application framework rather than a project/SDLC golden path.
 
-### C. Versioned source distribution with optional GitHub template bootstrap
+### C. Versioned source distribution with optional future GitHub template bootstrap
 
-Treat immutable Git tags/releases as the authoritative Morifolium distribution. Enable GitHub template mode as a convenience for starting repositories from the current default branch, while recording Morifolium lineage in a repository marker and documenting explicit upgrades between releases.
+Treat immutable Git tags/releases as the authoritative Morifolium distribution. Preserve the option to enable GitHub template mode later for low-friction bootstrap, while recording Morifolium lineage in a repository marker and documenting explicit upgrades between releases.
 
 **Advantages**
 
 - preserves the whole repository-level golden path;
 - requires no package registry or consumer credentials;
 - gives production consumers an immutable version authority;
-- retains low-friction GitHub template creation;
+- keeps future template bootstrap available without exposing an unstable pre-v0.1 default branch today;
 - leaves room to publish narrower libraries later if repeated implementation reuse justifies them.
 
 **Costs / risks**
 
 - upgrades are explicit migrations rather than dependency-manager updates;
-- template-created repositories must preserve their lineage marker deliberately;
-- `main` can be ahead of the latest stable release, so template mode alone is not reproducible release selection.
+- if template mode is enabled later, generated repositories must preserve their lineage marker deliberately;
+- template mode alone is never a reproducible release selector because `main` can be ahead of the latest release.
 
 ## Recommendation
 
-Adopt **Alternative C**.
+Adopt **Alternative C**, but **defer enabling GitHub template mode until Morifolium has a v0.1 release or a concrete consumer proves that default-branch template bootstrap is useful**.
 
-GitHub template mode is a bootstrap UI, not the version authority. Morifolium releases and their immutable tags define reproducible source versions. Generated repositories retain `.morifolium-version` and apply documented migrations when adopting a newer release.
+Morifolium releases and their immutable tags define reproducible source versions. Consumers retain `.morifolium-version` and apply documented migrations when adopting a newer release.
 
-A package should be introduced only for a narrower reusable runtime/build component whose independent versioned API has been demonstrated by multiple consumers.
+Template mode, if enabled later, is a bootstrap UI rather than the version authority. A package should be introduced only for a narrower reusable runtime/build component whose independent versioned API has been demonstrated by multiple consumers.
 
 ## Tradeoffs
 
-This deliberately favors inspectable source and explicit migrations over invisible framework coupling. It accepts more deliberate upgrade work in exchange for keeping CI, security defaults, repository policy, build conventions, and application fixtures reviewable as one versioned reference distribution.
+This deliberately favors inspectable source, explicit migrations, and release-backed adoption over premature convenience. It accepts more deliberate upgrade work in exchange for keeping CI, security defaults, repository policy, build conventions, and application fixtures reviewable as one versioned reference distribution.
