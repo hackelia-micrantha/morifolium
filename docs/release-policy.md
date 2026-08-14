@@ -4,7 +4,7 @@
 
 Morifolium is distributed as versioned source. Immutable Git tags and GitHub releases are the authoritative snapshots of the golden path.
 
-GitHub template mode is a convenience for creating a repository from the current default branch. Because template-generated repositories have independent history and `main` can be ahead of the latest release, the template UI is **not** a reproducible version selector.
+GitHub template mode is **deferred while Morifolium is pre-v0.1**. It may be enabled after a v0.1 release exists or a concrete consumer demonstrates that default-branch template bootstrap is useful. If enabled later, the template UI remains a convenience rather than a reproducible version selector because template-generated repositories have independent history and `main` can be ahead of the latest release.
 
 Consumers that require a reproducible baseline should start from or reconcile against a tagged release and keep `.morifolium-version` intact.
 
