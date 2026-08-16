@@ -19,7 +19,7 @@ mise run ci
 
 See [Getting started](docs/getting-started.md) for prerequisites and artifact details.
 
-The reference profile now includes testable mobile-security defaults and a local-only privacy-aware operational telemetry boundary. It remains pre-v0.1: second-consumer adoption and a release candidate remain intentionally incomplete. Morifolium is **not yet production-grade** and should not be treated as a finished starter kit.
+The reference profile includes testable mobile-security defaults and a local-only privacy-aware operational telemetry boundary. A second-consumer adoption in [Eyespie](docs/adoption/eyespie.md) has also proven that the canonical task boundary can be reconciled into an existing KMP mobile repository without replacing its application architecture. Morifolium remains pre-v0.1 until the proven contracts are prepared and validated as a bounded release candidate. It is **not yet production-grade** and should not be treated as a finished starter kit.
 
 ## Purpose
 
@@ -101,6 +101,7 @@ See:
 - [Repository governance](docs/governance.md)
 - [Release and upgrade policy](docs/release-policy.md)
 - [Security policy](SECURITY.md)
+- [Eyespie second-consumer adoption](docs/adoption/eyespie.md)
 
 ## Non-goals for v0.1
 
@@ -142,9 +143,9 @@ Specialized implementation concerns should remain in the projects that own them 
 ## Current priorities
 
 1. keep the Android golden-path validation gate reproducible and green;
-2. validate adoption through a second consumer before expanding abstractions;
-3. use that adoption evidence to decide whether template mode, additional profiles, or migration tooling are justified;
-4. prepare a bounded v0.1 release candidate once the second-consumer contract is proven.
+2. prepare a bounded v0.1 release candidate from the contracts already proven;
+3. validate release/version/migration evidence before publishing the first immutable v0.1 tag;
+4. defer template mode, additional profiles, shared runtime packages, and migration tooling until a concrete post-v0.1 need justifies them.
 
 ## License
 
