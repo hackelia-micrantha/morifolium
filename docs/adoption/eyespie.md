@@ -59,9 +59,9 @@ Eyespie already has an explicit backendless trust model. Its current Android pro
 - documents platform-backed storage for future local identity key material;
 - treats locally usable image embeddings as accessible to a sufficiently motivated device owner rather than claiming local secrecy as an authority boundary.
 
-These choices are compatible with Morifolium's security principles but are consumer-owned. In particular, Morifolium's explicit cleartext-network denial and network-security configuration are unnecessary in Eyespie's current Android core because that core has no network capability at all. If Eyespie later adds optional remote transport, the network boundary should be reviewed then rather than pre-adding configuration with no current effect.
+These choices are compatible with Morifolium's security principles but are consumer-owned. Morifolium additionally carries explicit cleartext-network denial and Network Security Configuration as future-proof defense in depth, while its current reference manifest also omits `INTERNET`. Copying that extra configuration into Eyespie would therefore add consistency rather than protect a network capability Eyespie currently exposes. If Eyespie later adds optional remote transport, the network boundary should be reviewed then against the concrete capability.
 
-This is useful evidence for the golden path: **secure defaults should preserve a stronger or narrower consumer boundary instead of mechanically copying the reference fixture's controls.**
+This is useful evidence for the golden path: **secure defaults should preserve an existing consumer boundary instead of mechanically copying every reference-fixture control.**
 
 ### Observability
 
@@ -110,7 +110,7 @@ A shared workflow is one implementation of that contract, not the contract itsel
 
 ### 4. Security and observability are boundary contracts, not copy targets
 
-Eyespie's no-network Android core is narrower than Morifolium's network-capable reference security baseline, and its current core has no generic telemetry/export requirement.
+Eyespie already satisfies the currently relevant no-network, backup, and exported-component boundaries without copying Morifolium's complete Android security fixture, and its current core has no generic telemetry/export requirement.
 
 The adoption supports reconciling invariants and ownership first. Reference implementations should be copied only when the consumer actually has the corresponding capability and threat/privacy requirement.
 
