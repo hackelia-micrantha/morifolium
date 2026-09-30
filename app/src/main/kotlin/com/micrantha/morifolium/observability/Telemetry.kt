@@ -68,6 +68,9 @@ class PrivacyAwareTelemetry(
             sink.emit(record)
         } catch (cancelled: CancellationException) {
             throw cancelled
+        } catch (interrupted: InterruptedException) {
+            Thread.currentThread().interrupt()
+            throw interrupted
         } catch (_: Exception) {
             // Optional observability must not change an independent domain result.
         }
