@@ -99,7 +99,7 @@ Morifolium provides no remote telemetry sink in the reference profile. Network e
 
 Observability must not become application authority. A telemetry sink failure must not grant permissions, bypass product policy, or become a prerequisite for core application correctness.
 
-`PrivacyAwareTelemetry` contains ordinary sink/exporter exceptions at the observability boundary so an optional exporter cannot change an independent domain result. Cancellation remains exceptional and is rethrown rather than converted into telemetry degradation. JVM `Error` conditions are also not swallowed.
+`PrivacyAwareTelemetry` contains ordinary sink/exporter exceptions at the observability boundary so an optional exporter cannot change an independent domain result. Cancellation remains exceptional and is rethrown rather than converted into telemetry degradation. Thread interruption restores the interrupted flag and is rethrown. JVM `Error` conditions are also not swallowed.
 
 Failure containment does not recursively emit another telemetry record through the same failing sink.
 
