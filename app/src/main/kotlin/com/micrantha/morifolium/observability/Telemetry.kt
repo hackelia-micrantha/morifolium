@@ -1,5 +1,7 @@
 package com.micrantha.morifolium.observability
 
+import java.util.concurrent.CancellationException
+
 enum class TelemetryOutcome {
     SUCCESS,
     FAILURE,
@@ -54,14 +56,21 @@ class PrivacyAwareTelemetry(
     private val policy: TelemetryPolicy = TelemetryPolicy(),
 ) {
     fun record(event: OperationalEvent) {
-        sink.emit(
+        val record =
             TelemetryRecord(
                 name = event.name,
                 outcome = event.outcome,
                 durationMs = event.durationMs,
                 metadata = policy.filter(event.metadata),
-            ),
-        )
+            )
+
+        try {
+            sink.emit(record)
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (_: Exception) {
+            // Optional observability must not change an independent domain result.
+        }
     }
 }
 
