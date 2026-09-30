@@ -118,7 +118,6 @@ class TelemetryTest {
         assertEquals(1, attempts)
     }
 
-
     @Test
     fun interruptionFromSinkIsNotSwallowed() {
         val telemetry =
