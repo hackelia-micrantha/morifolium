@@ -1,5 +1,9 @@
 # Privacy-aware observability contract
 
+This project contract layers on the Micrantha organization observability standard and profile merged by `hackelia-micrantha/.github#148` at `704fa3da3c35dc0dd80ebed6524f6f9eb696cb68`.
+
+Morifolium owns the mobile golden-path policy/filter/sink seam. Consumers that add OpenTelemetry should prefer upstream OTel APIs, OTLP, and semantic conventions rather than replacing this boundary with a Morifolium-specific wire protocol.
+
 ## Purpose
 
 Morifolium needs operational evidence without making a crash-reporting, analytics, or logging vendor part of the golden-path authority. The reference contract therefore starts with **local, deterministic, low-cardinality operational events** and an adapter boundary that can be implemented by a consumer when remote export is justified.
@@ -95,4 +99,8 @@ Morifolium provides no remote telemetry sink in the reference profile. Network e
 
 Observability must not become application authority. A telemetry sink failure must not grant permissions, bypass product policy, or become a prerequisite for core application correctness.
 
-The current in-memory sink is intentionally simple; asynchronous buffering, persistence, retries, and delivery guarantees are deferred until a concrete consumer requires them.
+`PrivacyAwareTelemetry` contains ordinary sink/exporter exceptions at the observability boundary so an optional exporter cannot change an independent domain result. Cancellation remains exceptional and is rethrown rather than converted into telemetry degradation. JVM `Error` conditions are also not swallowed.
+
+Failure containment does not recursively emit another telemetry record through the same failing sink.
+
+The current in-memory sink is intentionally simple; asynchronous buffering, persistence, retries, delivery guarantees, and intentional offline store-and-forward are deferred until a concrete consumer requires them. A future exporter should first use the standard OpenTelemetry mechanisms appropriate to its transport before introducing custom delivery infrastructure.
