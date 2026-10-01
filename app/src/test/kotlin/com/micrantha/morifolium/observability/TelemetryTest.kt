@@ -1,7 +1,11 @@
 package com.micrantha.morifolium.observability
 
+import java.util.concurrent.CancellationException
+
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Test
 
 class TelemetryTest {
@@ -91,6 +95,68 @@ class TelemetryTest {
 
         assertEquals(1, firstSnapshot.size)
         assertEquals(2, sink.snapshot().size)
+    }
+
+    @Test
+    fun throwingSinkDoesNotEscapeObservabilityBoundary() {
+        var attempts = 0
+        val telemetry =
+            PrivacyAwareTelemetry(
+                TelemetrySink {
+                    attempts += 1
+                    throw IllegalStateException("exporter unavailable")
+                },
+            )
+
+        telemetry.record(
+            OperationalEvent(
+                name = "request_finished",
+                outcome = TelemetryOutcome.SUCCESS,
+            ),
+        )
+
+        assertEquals(1, attempts)
+    }
+
+    @Test
+    fun interruptionFromSinkIsNotSwallowed() {
+        val telemetry =
+            PrivacyAwareTelemetry(
+                TelemetrySink {
+                    throw InterruptedException("interrupted")
+                },
+            )
+
+        try {
+            telemetry.record(
+                OperationalEvent(
+                    name = "request_interrupted",
+                    outcome = TelemetryOutcome.CANCELLED,
+                ),
+            )
+            fail("expected InterruptedException")
+        } catch (_: InterruptedException) {
+            assertTrue(Thread.currentThread().isInterrupted)
+        } finally {
+            Thread.interrupted()
+        }
+    }
+
+    @Test(expected = CancellationException::class)
+    fun cancellationFromSinkIsNotSwallowed() {
+        val telemetry =
+            PrivacyAwareTelemetry(
+                TelemetrySink {
+                    throw CancellationException("cancelled")
+                },
+            )
+
+        telemetry.record(
+            OperationalEvent(
+                name = "request_cancelled",
+                outcome = TelemetryOutcome.CANCELLED,
+            ),
+        )
     }
 
     @Test(expected = IllegalArgumentException::class)
