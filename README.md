@@ -8,7 +8,7 @@ It is not a new mobile application framework. Morifolium composes established pl
 
 ## Status
 
-**Lifecycle: incubating / pre-v0.1**
+**Lifecycle: incubating / v0.1**
 
 Morifolium has an executable **native Android/Kotlin reference profile** for proving the project-level delivery contract. Its canonical gate uses `mise` to validate the Android SDK, run Android lint and unit tests, and build a debug APK through the same task interface locally and in CI.
 
@@ -19,7 +19,7 @@ mise run ci
 
 See [Getting started](docs/getting-started.md) for prerequisites and artifact details.
 
-The reference profile includes testable mobile-security defaults and a local-only privacy-aware operational telemetry boundary. A second-consumer adoption in [Eyespie](docs/adoption/eyespie.md) has also proven that the canonical task boundary can be reconciled into an existing KMP mobile repository without replacing its application architecture. Morifolium remains pre-v0.1 until the proven contracts are prepared and validated as a bounded release candidate. It is **not yet production-grade** and should not be treated as a finished starter kit.
+The v0.1 reference profile includes testable mobile-security defaults and a local-only privacy-aware operational telemetry boundary. A second-consumer adoption in [Eyespie](docs/adoption/eyespie.md) has also proven that the canonical task boundary can be reconciled into an existing KMP mobile repository without replacing its application architecture. Morifolium remains **incubating rather than production-grade**: v0.1 is a bounded reference distribution, not a finished universal starter kit.
 
 ## Purpose
 
@@ -92,7 +92,7 @@ The generic reference profile uses no production credentials, release signing ke
 
 ## Distribution and upgrades
 
-Morifolium is a **versioned source distribution**. Immutable Git tags/releases are the version authority. GitHub template mode is deferred while Morifolium is pre-v0.1 and may be enabled later when a release or concrete consumer demonstrates that default-branch template bootstrap is useful.
+Morifolium is a **versioned source distribution**. Immutable Git tags/releases are the version authority. GitHub template mode remains deferred for v0.1 and should be reconsidered only when concrete adoption evidence shows that default-branch template bootstrap adds value.
 
 Consumers retain `.morifolium-version` and apply release migrations deliberately so repository-level CI, security, tooling, and application changes remain reviewable instead of being hidden behind a framework dependency.
 
@@ -100,6 +100,8 @@ See:
 
 - [Repository governance](docs/governance.md)
 - [Release and upgrade policy](docs/release-policy.md)
+- [v0.1.0 release notes](docs/releases/0.1.0.md)
+- [v0.1.0 migration guidance](docs/migrations/0.1.0.md)
 - [Security policy](SECURITY.md)
 - [Eyespie second-consumer adoption](docs/adoption/eyespie.md)
 
@@ -143,9 +145,9 @@ Specialized implementation concerns should remain in the projects that own them 
 ## Current priorities
 
 1. keep the Android golden-path validation gate reproducible and green;
-2. prepare a bounded v0.1 release candidate from the contracts already proven;
-3. validate release/version/migration evidence before publishing the first immutable v0.1 tag;
-4. defer template mode, additional profiles, shared runtime packages, and migration tooling until a concrete post-v0.1 need justifies them.
+2. keep release/version/migration evidence aligned with the implemented contracts;
+3. gather post-v0.1 consumer evidence before expanding the supported profile surface;
+4. defer template mode, additional profiles, shared runtime packages, and migration tooling until a concrete need justifies them.
 
 ## License
 
