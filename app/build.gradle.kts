@@ -4,6 +4,9 @@ plugins {
     id("com.android.application")
 }
 
+val morifoliumVersion = rootProject.file(".morifolium-version").readText().trim()
+check(morifoliumVersion.isNotEmpty()) { ".morifolium-version must not be empty" }
+
 android {
     namespace = "com.micrantha.morifolium"
 
@@ -19,7 +22,7 @@ android {
         //noinspection OldTargetApi
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0-dev"
+        versionName = morifoliumVersion
     }
 
     lint {
