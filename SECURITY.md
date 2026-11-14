@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Morifolium is pre-v0.1. Security fixes are applied to the current `main` branch and, once releases exist, to the latest supported release when practical. Older source snapshots and downstream consumer copies are not automatically updated.
+Morifolium is incubating. Security fixes are applied to the current `main` branch and the latest supported release when practical. Older source snapshots and downstream consumer copies are not automatically updated.
 
 ## Reporting a vulnerability
 

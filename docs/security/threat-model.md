@@ -57,7 +57,7 @@ Optional Digitalis or Envuscator integrations add their own separately owned tru
 | Cross-app component abuse | New exported receiver/service accepts attacker input | Only launcher activity exported; conformance test enumerates exports | Validate any future intentional IPC contract and permissions |
 | Backup/transfer data disclosure | Sensitive local state copied off device | Backup/device transfer deny-by-default rules | Product-specific data classification and explicit exceptions |
 | Security control confusion | Biometrics treated as backend authentication | Baseline states biometrics are local user-presence gates only | Product identity, MFA, sessions, authorization, recovery |
-| Sensitive telemetry | Token/user content enters logs | No remote telemetry in baseline; privacy contract deferred to #9 | Product data taxonomy, consent, retention, provider configuration |
+| Sensitive telemetry | Token/user content enters logs | Privacy-aware policy/filter/sink boundary minimizes metadata before the local reference sink; no remote telemetry exporter | Product data taxonomy, consent, retention, provider configuration |
 | Signing-key compromise | Release keystore stored with template | No release key in repository or validation build | External signing service/secret storage, access control, rotation |
 
 ## Abuse cases
