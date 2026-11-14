@@ -124,7 +124,7 @@ Morifolium should continue to own project/SDLC composition rather than turn the 
 
 Eyespie was best served by a selective reconciliation of one convention into an established repository, not by recreating the project from Morifolium's default branch.
 
-This evidence does not justify enabling GitHub template mode during pre-v0.1. Immutable releases remain the appropriate version authority; template bootstrap can be reconsidered after v0.1 or when a greenfield consumer demonstrates a concrete need.
+This evidence does not justify enabling GitHub template mode for v0.1. Immutable releases remain the appropriate version authority; template bootstrap can be reconsidered when a greenfield consumer demonstrates a concrete need.
 
 ### 7. Migration tooling is premature
 
@@ -147,4 +147,4 @@ Second-consumer evidence supports keeping Morifolium's current architecture unch
 - do not add migration tooling yet;
 - do not claim an additional KMP reference profile from this adoption alone.
 
-The next bounded milestone is therefore a **v0.1 release candidate** of the contracts already proven, rather than another abstraction-expansion slice.
+This evidence forms part of the **v0.1 release basis** for the contracts already proven and does not justify another abstraction-expansion slice.
